@@ -5,6 +5,11 @@ import config
 import api
 import tools
 from tools import WebDownloader
+import rclone
+
+cfg = """[local]
+type = local
+nounc = true"""
 
 
 class TaskDispatcher:
@@ -139,6 +144,8 @@ class TaskDispatcher:
             targetFileName = self.handleSubtitles(subtitles, fileName, targetFileName, headers)
 
         print('Finish: %s\n' % targetFileName)
+        #self.videoFilePath
+        #result = rclone.with_config(cfg).run_cmd(command="lsd", extra_args=["local:/tmp", "-v", "--dry-run"])
 
 
     def downloadMultiParts(self, url, baseFileName, pRange):
